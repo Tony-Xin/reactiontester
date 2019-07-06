@@ -1,0 +1,83 @@
+<html>
+
+	<head>
+
+		<title>Reaction Timer</title>
+
+		<style type="text/css">
+
+			body {
+				font-family: sans-serif;
+			}
+
+			h1 {
+				font-weight: bold;
+				font-size: 30px;
+			}
+			
+			#clickableDiv {
+				background-color: red;
+				border-radius: 10px;
+				width: 100px;
+				height: 100px;
+				margin-left: 50px;
+				position: relative;
+				display: none;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+
+		<h1>Reation Tester</h1>
+		<p id="yourTime">Your time: </p>
+		<p><button id="restart">Restart</button></p>
+		
+
+		<div id="clickableDiv"></div>
+
+		<script>
+
+			var start = 0;
+
+			document.getElementById("restart").onclick = function() {
+				appearAfterDelay();
+			}
+
+			function showBlock() {
+
+				var top = Math.random() * 400;
+				var left = Math.random() * 400;
+
+				document.getElementById("clickableDiv").style.top = top + "px";
+				document.getElementById("clickableDiv").style.left = left + "px";
+				document.getElementById("clickableDiv").style.display = "inline-block";
+
+				start = new Date().getTime();
+
+			}
+
+			function appearAfterDelay() {
+
+				setTimeout(showBlock, Math.random() * 2000);
+
+			}
+
+			appearAfterDelay();
+
+			document.getElementById("clickableDiv").onclick = function() {
+
+				document.getElementById("clickableDiv").style.display = "none";
+				var end = new Date().getTime();
+				var timeTaken = (end-start)/1000;
+				document.getElementById("yourTime").innerHTML = "Your time: " + timeTaken + "s";
+
+			}
+
+		</script>
+
+	</body>
+
+</html>
